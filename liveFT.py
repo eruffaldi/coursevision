@@ -89,6 +89,7 @@ def argparser():
             help = "maximum contrast scaling (adjusts white level)")
     parser.add_argument("-q", "--color", action = "store_true",
             help = "trade a little speed for color")
+    parser.add_argument("-w","--write-image",dest="writeimage",action="store_true")
     
     return parser.parse_args()
 
@@ -168,6 +169,9 @@ class live_FT2(object):
                 im += aim / float(imAvgs) 
 
         #crop image
+        vCrop = [int(x) for x in vCrop]
+        hCrop = [int(x) for x in hCrop]
+        #print vCrop,im.shape
         im = im[vCrop[0] : vCrop[1], hCrop[0]: hCrop[1], :]
         #scaling horizontal axis down
         if (self.vScale != 1) or (self.hScale != 1):
@@ -233,8 +237,8 @@ class live_FT2(object):
         time.sleep(.01)
         cv2.imshow(self.figid, np.concatenate((im, Intensity),axis = 1))
         #cv2.updateWindow(figid)
-
-        cv2.imwrite(r"temp.jpg",255 * np.concatenate((im, Intensity),axis = 1))
+        if self.writeimage:
+            cv2.imwrite(r"temp.jpg",255 * np.concatenate((im, Intensity),axis = 1))
 
         cv2.waitKey(1)
 
