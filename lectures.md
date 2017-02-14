@@ -17,7 +17,10 @@ Here we highlight the key concepts
 - basics of opencv
 
 Notebooks:
-- Basics
+- [Basics](Basics.ipynb)
+
+Book:
+- Szelisk Chapter 1
 
 ## 2. Colors
 
@@ -27,7 +30,44 @@ Notebooks:
 -- metamers
 - tristimulus encoding
 - color spaces: YUV, LAB
+- digital sensor
+-- rolling shutter
 
-## 3. Image Filtering
+Notebooks:
+- colors
 
-- 
+Book:
+- Szelisk Chapter 2.2-2.3
+
+Literature:
+- Sensor Fusion Spline with Rolling Shutter
+
+## 3. Image Processing
+
+- types of filter
+- linear filter
+- classic linear filters: 
+- separable filters
+- gaussian smoother
+- frequency transformation
+- box vs gaussian in frequeyncy
+- pyramidal processing
+
+Literature:
+- Learning a Separable Kernel
+
+Demos:
+- Live FFT
+
+Notebooks:
+- Filtering
+- Frequency
+- Pyramidal
+
+Book:
+- Szelisk Chapter 3
+
+Missing Topics:
+- some image transformations
+
+## 4. Feature and Tracking

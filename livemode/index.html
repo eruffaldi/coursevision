@@ -1,0 +1,102 @@
+<head>
+<style>
+  #pad {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    font-family: monaco;
+    background: -webkit-canvas(cursors);
+    background-repeat: no-repeat;
+  }
+
+  .rsh {
+    height: 8px;
+    background-color: grey;
+  }
+
+  #top {
+    overflow: hidden;
+    overflow-y: scroll; 
+  }
+</style>
+<link rel="stylesheet" href="codemirror.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+</head>
+<body>
+<div id="container">
+<div id="top">
+<textarea id='pad' autofocus width="100%" height="70%">Ciao</textarea>
+</div>
+<hr class="rsh"/>
+<div id="bottom">
+Output:<br/>
+<textarea id="pud" width="100%" height="30%">
+lastimg = data.get("img")
+if lastimg is None:
+  lastimg = cv2.imread("../example.jpg",cv2.IMREAD_COLOR)
+  data["img"] = lastimg
+nextimg = lastimg*2
+cv2.imshow("live",nextimg)
+</textarea>
+</div>
+</div>
+<script src="codemirror.js"></script>
+<script src="python.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+function Handler()
+{
+  this.me = "ciao"
+  this.pending = false
+}
+Handler.prototype.onNotify = function ()
+{
+    this.pending = false
+    this.ws.send(cm.getValue())
+}
+
+Handler.prototype.onLocalChange = function (cm,change)
+{
+  if(!this.pending)
+  {
+    console.log("onLocalChange " + this.me)
+    this.pending = true
+    var _this = this;
+    setTimeout(function () { _this.onNotify() },1000)
+  }
+
+}
+Handler.prototype.link = function (cm,ws,cmo)
+{
+    this.ws = ws
+    var _this = this
+    cm.on('change', function () { _this.onLocalChange() })
+    ws.onmessage = function ()
+    {
+        cmo.setValue(event.data)
+    }
+}
+
+var cm = CodeMirror.fromTextArea( document.getElementById('pad')  , { mode: "python"})
+var cmo = CodeMirror.fromTextArea( document.getElementById('pud') )
+//cm.on('change', onLocalChange);
+var elem = document.getElementById('pad');
+var elemo = document.getElementById('pud');// 
+var ws = new WebSocket('ws://' + window.location.host + "/x");
+var ctx =new Handler()
+ctx.link(cm,ws,cmo)
+
+$('.rsh').draggable({
+    axis: 'y', 
+    containment: 'parent',
+    helper: 'clone', 
+    drag: function (event, ui) { 
+        var height = ui.offset.top - 85; 
+        $(this).prev().height(height); 
+    } 
+});
+
+</script>
+</body>
