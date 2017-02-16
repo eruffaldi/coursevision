@@ -52,6 +52,8 @@ Literature:
 - frequency transformation
 - box vs gaussian in frequeyncy
 - pyramidal processing
+- computational cost of filters, separable and FFT
+- example of DCT
 
 Literature:
 - Learning a Separable Kernel
@@ -69,5 +71,9 @@ Book:
 
 Missing Topics:
 - some image transformations
+
+Exercises:
+- show the 2D Fourier basis
+- matching using filters
 
 ## 4. Feature and Tracking
