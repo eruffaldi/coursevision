@@ -1,3 +1,5 @@
 # coursevision2017
 
 See Lecture Listing [here](lectures.md)
+
+See Setup [here](setup.md)
