@@ -77,3 +77,6 @@ Exercises:
 - matching using filters
 
 ## 4. Feature and Tracking
+
+Book:
+- Szelisk Chapter 4.2

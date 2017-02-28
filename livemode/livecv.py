@@ -9,7 +9,7 @@ import threading
 import cv2
 import Queue
 import signal
-
+import numpy as np
 
 class Common:
   """Common Handler"""
@@ -84,7 +84,8 @@ if __name__ == "__main__":
   th.start()
   signal.signal(signal.SIGINT, signal_handler)
 
-  cv2.namedWindow("live")
+  cv2.namedWindow("live",cv2.WINDOW_NORMAL)
+  cv2.resizeWindow("live",640,400)
   data = {} # for holding stuff safely
   while True:
     cc = common.lastcode()

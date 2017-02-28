@@ -1,4 +1,7 @@
 
+python livecv.py
+
+Browser: http://localhost:8000/
 
 #Example
 
@@ -14,3 +17,9 @@ cv2.resizeWindow("live",640,400)
 #Ideas
 - HTML5 widgets (trackbar...)
 - Python live video and repeat execution for every frame
+
+
+- line number
+- indentation
+- profiling
+- send back html
