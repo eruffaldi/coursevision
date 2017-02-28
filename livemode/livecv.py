@@ -10,7 +10,9 @@ import cv2
 import Queue
 import signal
 import numpy as np
+import webbrowser
 
+quit = False
 class Common:
   """Common Handler"""
   def __init__(self):
@@ -69,7 +71,12 @@ application = tornado.web.Application([
 #WebSocket connection to 'ws://127.0.0.1:8000/' failed: Error during WebSocket handshake: Sent non-empty 'Sec-WebSocket-Protocol' header but no response was received
 #https://github.com/gdi2290/angular-websocket/issues/13
 def _server_runner(app):
-  app.listen(8000)
+  global quit
+  try:
+    app.listen(8000)
+  except:
+    quit = True
+  webbrowser.open("http://localhost:8000/index.html")
   tornado.ioloop.IOLoop.instance().start()
   
 def signal_handler(signal, frame):
@@ -87,7 +94,7 @@ if __name__ == "__main__":
   cv2.namedWindow("live",cv2.WINDOW_NORMAL)
   cv2.resizeWindow("live",640,400)
   data = {} # for holding stuff safely
-  while True:
+  while not quit:
     cc = common.lastcode()
     # Passive wait on Queue: 1) no SIGINT, 2) hourglass over window
     #cc = common.lastcodewait()
@@ -98,7 +105,7 @@ if __name__ == "__main__":
       try:
         exec cc
       except Exception ,e:
-        common.sendback("Exception " + str(e))
+        common.sendback(buffer.getvalue() + "\n" + "Exception " + str(e))
         good = False
       if good:
         common.sendback("Ok " + buffer.getvalue())

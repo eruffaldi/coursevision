@@ -19,7 +19,10 @@ cv2.resizeWindow("live",640,400)
 - Python live video and repeat execution for every frame
 
 
-- line number
-- indentation
-- profiling
-- send back html
+- show indentation
+- profiling special
+- profiling gutter
+- send back html or even images
+- comment block shortcut
+- side  byside image
+- reopen on closed connection

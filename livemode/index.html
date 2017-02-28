@@ -1,15 +1,18 @@
 <head>
 <style>
   #pad {
-    width: 100%;
-    height: 100%;
-    font-size: 20px;
     font-family: monaco;
     background: -webkit-canvas(cursors);
     background-repeat: no-repeat;
   }
 
-  .rsh {
+ .cm-tab {
+         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+         background-position: right;
+         background-repeat: no-repeat;
+      }
+
+  #x.rsh {
     height: 8px;
     background-color: grey;
   }
@@ -27,13 +30,8 @@
 <body>
 <div id="container">
 <div id="top">
-<textarea id='pad' autofocus width="100%" height="70%">Ciao</textarea>
-</div>
-<hr class="rsh"/>
-<div id="bottom">
-Output:<br/>
-<textarea id="pud" width="100%" height="30%">
-lastimg = data.get("img")
+<textarea id='pad' autofocus width="100%" height="70%">
+  lastimg = data.get("img")
 if lastimg is None:
   lastimg = cv2.imread("../example.jpg",cv2.IMREAD_COLOR)
   data["img"] = lastimg
@@ -41,11 +39,47 @@ nextimg = lastimg*2
 cv2.imshow("live",nextimg)
 </textarea>
 </div>
-</div>
-<script src="codemirror.js"></script>
-<script src="python.js" type="text/javascript" charset="utf-8"></script>
+<!--<a href="javascript:commentSelection(true)">
+            Comment Selected
+          </a>-->
+<hr class="rsh"/>
+<div id="bottom">
+Output:<br/>
+<textarea id="pud" width="100%" height="30%">
 
+</textarea>
+</div>
+</div>
+<script src="codemirror.js" type="text/javascript" charset="utf-8"></script>
+<script src="python.js" type="text/javascript" charset="utf-8"></script>
 <script>
+  /*
+  // Comment/uncomment the specified range
+  CodeMirror.defineExtension("commentRange", function (isComment, from, to) {
+    var cm = this, curMode = CodeMirror.innerMode(cm.getMode(), cm.getTokenAt(from).state).mode;
+    cm.operation(function() {
+      if (isComment) { // Comment range
+        // iterate over lines 
+        for(var i = to.line; i >= from.line; i--)
+        {
+          var lh = cm.getLineHandle(i)
+          if(lh.text[0] == '#')
+          {
+            cm.replaceRange(lh.text.substr(1),fromstart,fromend)
+          }
+        }
+      } else { // Uncomment range
+        for(var i = to.line; i >= from.line; i--)
+        {
+          var fromstart = [from.line,0]
+          var fromend = [from.line,100000]
+          cm.replaceRange("#"+ cm.getRange(fromstart,fromend),fromstart,fromend)
+        }
+      }
+    });
+  });
+  */
+
 function Handler()
 {
   this.me = "ciao"
@@ -79,7 +113,16 @@ Handler.prototype.link = function (cm,ws,cmo)
     }
 }
 
-var cm = CodeMirror.fromTextArea( document.getElementById('pad')  , { mode: "python"})
+function getSelectedRange() {
+        return { from: cm.getCursor(true), to: cm.getCursor(false) };
+      }
+
+function commentSelection(isComment) {
+        var range = getSelectedRange();
+        cm.commentRange(isComment, range.from, range.to);
+      }     
+
+var cm = CodeMirror.fromTextArea( document.getElementById('pad')  , { mode: "python", lineNumbers: true })
 var cmo = CodeMirror.fromTextArea( document.getElementById('pud') )
 //cm.on('change', onLocalChange);
 var elem = document.getElementById('pad');
