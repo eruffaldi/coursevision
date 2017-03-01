@@ -76,7 +76,22 @@ Exercises:
 - show the 2D Fourier basis
 - matching using filters
 
-## 4. Feature and Tracking
+## 4. Edges
+
+- edge detection
+- Canny edge detector
+- bilinear interpolation
+- non-maximum suppression
 
 Book:
-- Szelisk Chapter 4.2
+- Szeliski Chapter 4.2
+
+Lectures:
+- Canny Edge Detector Paper (https://pdfs.semanticscholar.org/55e6/6333402df1a75664260501522800cf3d26b9.pdf)
+
+## 5. Points
+
+- harris detector
+
+Book:
+- Szelisi Chapter 4.1
