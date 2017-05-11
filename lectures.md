@@ -95,3 +95,18 @@ Lectures:
 
 Book:
 - Szelisi Chapter 4.1
+
+## 9 - Faces
+
+- the face pipeline: definitions, basic principles
+- the Viola-Jones Algorithm: rectangles, integral images, decision tree, AdaBoost, cascade, training set
+- eigenfaces
+
+Book:
+- Szeliski Chapter 14.2
+
+Software:
+- OpenCV Haar detector
+- DLib Hog and examples
+- [OpenFACE](https://github.com/TadasBaltrusaitis/OpenFace)
+- Online examples: e.g. [Visage](visagetechnologies.com/html5/)
