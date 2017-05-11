@@ -96,14 +96,16 @@ Lectures:
 Book:
 - Szelisi Chapter 4.1
 
-## 9 - Faces
+## 9. Faces
 
 - the face pipeline: definitions, basic principles
 - the Viola-Jones Algorithm: rectangles, integral images, decision tree, AdaBoost, cascade, training set
 - eigenfaces
 
+Bonus: discussion about VJ algorithm and comparison to alternatives
+
 Book:
-- Szeliski Chapter 14.2
+- Szeliski Chapter 14.1 and 14.2
 
 Software:
 - OpenCV Haar detector
