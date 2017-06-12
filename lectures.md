@@ -96,6 +96,31 @@ Lectures:
 Book:
 - Szelisi Chapter 4.1
 
+## 6. Features
+
+- frequency space
+- local image features
+- features and scale
+- laplacian pyramids
+
+## 7. Matching
+The problem  of matching between different views
+
+- descriptors
+- harris corners
+- SIFT
+- SURF
+- search of matching
+- Hough votes
+- ICP
+
+## 8. Camera and  Optics
+
+- camera features
+- depth
+- camera calibration
+
+
 ## 9. Faces
 
 - the face pipeline: definitions, basic principles
@@ -112,3 +137,7 @@ Software:
 - DLib Hog and examples
 - [OpenFACE](https://github.com/TadasBaltrusaitis/OpenFace)
 - Online examples: e.g. [Visage](visagetechnologies.com/html5/)
+
+## 10. Object Detection
+
+Some examples of object detection applied to Autonomous Systems
