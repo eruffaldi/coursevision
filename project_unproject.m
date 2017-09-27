@@ -1,7 +1,7 @@
-% Projection and Unprojection with MATLAB
+% Projection and Unprojection with MATLAB from inverse depth
 syms cx cy fx fy tx real
 syms Px Py Pz real
-syms px py dis real
+syms px py invdepth real
 dividew4 = @(P) P/P(4);
 dividew3 = @(P) P/P(4);
 
@@ -12,10 +12,10 @@ Rt(1,4) = tx;
 
 P = K4*Rt;
 iP = inv(P);
-pdis2dto3d = @(p) dividew4(iP*p);
-p3dtodis2 = @(p) dividew4(P*p);
+pidepth2dto3d = @(p) dividew4(iP*p);
+p3dtoidepth2 = @(p) dividew4(P*p);
 
-pi = [px py dis 1]';
+pi = [px py invdepth 1]';
 piw = iP*pi;
 piw3 = simplify(dividew4(piw));
 
@@ -26,5 +26,5 @@ pwi3 = simplify(dividew4(pwi))
 
 % verify
 
-piw3i = simplify(p3dtodis2(piw3))
-pwi3w = simplify(pdis2dto3d(pwi3))
+piw3i = simplify(p3dtoidepth2(piw3))
+pwi3w = simplify(pidepth2dto3d(pwi3))
