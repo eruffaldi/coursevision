@@ -1,4 +1,9 @@
 % Projection and Unprojection with MATLAB from inverse depth
+%
+% invdepth = 1/Z
+% disparity = xL - xR = B f / Z
+%  where B=baseline along X
+%  f is the focal distance
 syms cx cy fx fy tx real
 syms Px Py Pz real
 syms px py invdepth real
