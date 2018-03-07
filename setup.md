@@ -2,13 +2,14 @@
 
 Useremo Python con OpenCV e per alcune cose i notebook di IPython. Preferirei fossimo tutti su Linux/OSX ma anche Windows va bene.
 
+IDE Spyder 3: https://pythonhosted.org/spyder/
+
 # Linux
-	apt-get install opencv
+	pip install opencv-contrib-python
 	pip install numpy
 	pip install jupyter
 	pip install scikit-learn
 
-Bonus: https://pythonhosted.org/spyder/
 
 # Windows
 Consiglio Anaconda: https://www.continuum.io/downloads versione Python 2.7. E’ grande ma contiene tutto quello che serve: https://docs.continuum.io/anaconda/pkg-docs 
@@ -22,6 +23,7 @@ opencv_python-3.1.0-cp27-cp27m-win_amd64.whl
 
 # OSX
 	port install opencv
+	# or pip install opencv-contrib-python
 	pip install numpy
 	pip install jupyter
 	pip install  scikit-learn
